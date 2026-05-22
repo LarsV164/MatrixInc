@@ -1,0 +1,104 @@
+﻿@using KE03_INTDEV_SE_1_Base.Services
+@inject CartService CartService
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Matrix.Inc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KE03_INTDEV_SE_1_Base.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3 py-0">
+            <div class="container-fluid px-0 d-flex align-items-center">
+                <a class="navbar-brand m-0 p-0" asp-area="" asp-page="/Index">
+                    <img src="~/MediaFunctional/matrixinc_logo.png"
+                         alt="Matrix Inc Logo"
+                         style="height: 100px; width: auto;" />
+                </a>
+
+                <div class="collapse navbar-collapse d-sm-flex justify-content-left">
+                    <ul class="navbar-nav align-items-center">
+                        <!--
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Producten">
+                                Assortiment
+                            </a>
+                        </li>
+                        -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/CustomerOrder">
+                                Customer Orders
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-none d-sm-flex align-items-center ms-auto me-3">
+                    <a asp-page="/Winkelwagen" class="position-relative d-inline-block">
+                        <img src="~/MediaFunctional/shoppingcart_icon.png"
+                             alt="Winkelwagen"
+                             style="height: 45px; width: auto;" />
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @CartService.GetTotalItems()
+                        </span>
+
+                    </a>
+                </div>
+
+                <div class="d-flex d-sm-none align-items-center ms-auto me-3">
+                    <a asp-page="/Winkelwagen" class="position-relative d-inline-block me-3">
+                        <img src="~/MediaFunctional/shoppingcart_icon.png"
+                             alt="Winkelwagen"
+                             style="height: 45px; width: auto;" />
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @CartService.GetTotalItems()
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - Matrix.Inc -
+            <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <a> | </a>
+            <a asp-area="" asp-page="/Info">Info</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

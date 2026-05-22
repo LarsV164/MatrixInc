@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\MediaFunctional\matrix.png" />
+    <None Include="wwwroot\MediaFunctional\matrixwallpaper_bg.jpg" />
+    <None Include="wwwroot\MediaFunctional\matrix_inc_logo.png" />
+    <None Include="wwwroot\MediaFunctional\matrix_logo.png" />
+    <None Include="wwwroot\MediaFunctional\shoppingcart_icon.png" />
+    <None Include="wwwroot\MediaFunctional\trashcanicon.png" />
+    <None Include="wwwroot\MediaFunctional\wallpaper_bg_marble.jpg" />
+    <None Include="wwwroot\Media\empdevice.jpg" />
+    <None Include="wwwroot\Media\jackinchair.jpg" />
+    <None Include="wwwroot\Media\nebuchadnezzar.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,106 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.winkelwagenModel
+
+@{
+    ViewData["Title"] = "Winkelwagen";
+}
+
+<h1>Winkelwagen</h1>
+
+@if (Model.CartItems.Any())
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Aantal</th>
+                <th>Prijs</th>
+                <th>Totaal</th>
+                <th>Actie</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.CartItems) // list of products in shopping cart and what to display
+            {
+                var imagePath = $"/Media/{item.Product.ProductImageName}";
+
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="@imagePath"
+                                 alt="@item.Product.Name"
+                                 style="width: 70px; height: 70px; object-fit: cover;"
+                                 class="rounded shadow-sm" />
+                            <span>@item.Product.Name</span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+
+                            <form method="post" asp-page-handler="Decrease">
+                                <input type="hidden" name="id" value="@item.Product.Id" /> <!-- decrease item amount -->
+
+                                <button class="btn btn-outline-secondary btn-sm">
+                                    -
+                                </button>
+                            </form>
+
+                            <span class="fw-bold">
+                                @item.Quantity
+                            </span>
+
+                            <form method="post" asp-page-handler="Increase">
+                                <input type="hidden" name="id" value="@item.Product.Id" /> <!-- increase item amount -->
+                                <button class="btn btn-outline-secondary btn-sm">
+                                    +
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+
+                    <td>€ @item.Product.Price</td>
+                    <td>€ @(item.Product.Price* item.Quantity)</td>
+
+                    <td>
+                        <form method="post" asp-page-handler="Remove">
+                            <input type="hidden" name="id" value="@item.Product.Id" /> <!-- remove an item -->
+
+                            <button class="btn btn-danger btn-sm d-flex align-items-center justify-content-center">
+                                <img src="~/MediaFunctional/trashcanicon.png"
+                                     alt="Verwijderen"
+                                     style="height: 20px; width: auto;" />
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+
+    <h4>
+        Totaal:
+        € @Model.CartItems.Sum(x => x.Product.Price * x.Quantity)
+    </h4>
+
+    <div class="d-flex gap-2 mt-3">
+        <a asp-page="/Checkout" class="btn btn-success">
+            Afrekenen <!-- pay order -->
+        </a>
+
+        <form method="post" asp-page-handler="Clear">
+            <button class="btn btn-warning">
+                Winkelwagen leegmaken <!-- make shop cart empty -->
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        Je winkelwagen is momenteel leeg. <!-- if the shop cart is empty -->
+    </div>
+}
