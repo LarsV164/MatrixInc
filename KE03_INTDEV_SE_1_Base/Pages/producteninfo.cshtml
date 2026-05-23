@@ -76,16 +76,18 @@
                     </div>
                 </form>
 
-                <form method="post" asp-page-handler="RemoveFromCart">
-                    <input type="hidden" name="id" value="@Model.Product?.Id" />
-
-                    <button type="submit"
-                            class="btn btn-danger d-flex align-items-center justify-content-center">
-                        <img src="~/MediaFunctional/trashcanicon.png"
-                             alt="Verwijderen"
-                             style="height: 24px; width: auto;" />
-                    </button>
-                </form>
+            <!--
+            <form method="post" asp-page-handler="RemoveFromCart">
+                <input type="hidden" name="id" value="@Model.Product?.Id" />
+                    
+                <button type="submit"
+                        class="btn btn-danger d-flex align-items-center justify-content-center">
+                    <img src="~/MediaFunctional/trashcanicon.png"
+                         alt="Verwijderen"
+                         style="height: 24px; width: auto;" />
+                </button>
+            </form>
+            -->
             </div>
         </div>
     </div>
